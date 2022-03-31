@@ -42,8 +42,28 @@ public class schoolsearch {
                 if(tokens[0].equals("Q") || tokens[0].equals("Quit")){
                     quitFlag = 1;
                 }
+                if(tokens[0].equals("I") || tokens[0].equals("Info")){
+                    info(entries);
+                }
             }
         }
+    }
+
+    public static void info(ArrayList<Entry> entries){
+        for(int i =0; i <7; i++){
+            int numberOfStudents = studentsInGrade(entries, i);
+            System.out.println("<"+i+">:" +numberOfStudents);
+        }
+    }
+
+    public static int studentsInGrade(ArrayList<Entry> entries, int grade){
+        int studentCounter = 0;
+        for(int i = 0; i <entries.size(); i++){
+            if(entries.get(i).grade == grade){
+                studentCounter++;
+            }
+        }
+        return studentCounter;
     }
 
     public static void teacher(ArrayList<Entry> entries, String lastName){
