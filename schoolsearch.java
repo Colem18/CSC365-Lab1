@@ -35,10 +35,21 @@ public class schoolsearch {
                     student(entries,tokens[1]);
                 }
             }
+            if(tokens[0].equals("T:") || tokens[0].equals("Teacher:")){
+                teacher(entries, tokens[1]);
+            }
             if(tokens.length == 1){
                 if(tokens[0].equals("Q") || tokens[0].equals("Quit")){
                     quitFlag = 1;
                 }
+            }
+        }
+    }
+
+    public static void teacher(ArrayList<Entry> entries, String lastName){
+        for(int i = 0; i <entries.size(); i++){
+            if(entries.get(i).tLastName.equals(lastName)){
+                System.out.println(entries.get(i).stLastName+","+entries.get(i).stFirstName);
             }
         }
     }
