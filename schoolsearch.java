@@ -38,6 +38,9 @@ public class schoolsearch {
             if(tokens[0].equals("T:") || tokens[0].equals("Teacher:")){
                 printStudentsByTeacher(entries, tokens[1]);
             }
+            if(tokens[0].equals("G:") || tokens[0].equals("Grade:")){
+                printStudentsByGrade(entries, Integer.parseInt(tokens[1]));
+            }
             if(tokens.length == 1){
                 if(tokens[0].equals("Q") || tokens[0].equals("Quit")){
                     quitFlag = 1;
@@ -50,15 +53,23 @@ public class schoolsearch {
     }
 
     public static void info(ArrayList<Entry> entries){
-        for(int i =0; i <7; i++){
+        for(int i = 0; i < 7; i++){
             int numberOfStudents = studentsInGrade(entries, i);
-            System.out.println("<"+i+">:" +numberOfStudents);
+            System.out.println("<" + i + ">:" + numberOfStudents);
+        }
+    }
+
+    public static void printStudentsByGrade(ArrayList<Entry> entries, int inputGrade){
+        for(int i = 0; i < entries.size(); i++){
+            if(entries.get(i).grade == inputGrade){
+                System.out.println(entries.get(i).tLastName + ", " + entries.get(i).tFirstName);
+            }
         }
     }
 
     public static int studentsInGrade(ArrayList<Entry> entries, int grade){
         int studentCounter = 0;
-        for(int i = 0; i <entries.size(); i++){
+        for(int i = 0; i < entries.size(); i++){
             if(entries.get(i).grade == grade){
                 studentCounter++;
             }
@@ -77,16 +88,16 @@ public class schoolsearch {
     public static void studentBus(ArrayList<Entry> entries, String lastName){
         for(int i = 0; i < entries.size(); i++){
             if(entries.get(i).stLastName.equals(lastName.toUpperCase())){
-                System.out.println(entries.get(i).stLastName+", "+entries.get(i).stFirstName+", "+entries.get(i).bus);
+                System.out.println(entries.get(i).stLastName + ", " + entries.get(i).stFirstName + ", " + entries.get(i).bus);
             }
         }
     }
 
     public static void student(ArrayList<Entry> entries, String lastName){
-        for(int i = 0; i <entries.size(); i++){
+        for(int i = 0; i < entries.size(); i++){
             if(entries.get(i).stLastName.equals(lastName.toUpperCase())){
-                System.out.println(entries.get(i).stLastName+", "+entries.get(i).stFirstName+", "+entries.get(i).grade+
-                ", "+entries.get(i).classroom+", "+entries.get(i).tLastName+", "+entries.get(i).tFirstName);
+                System.out.println(entries.get(i).stLastName + ", " + entries.get(i).stFirstName + ", "+entries.get(i).grade +
+                ", " + entries.get(i).classroom + ", " + entries.get(i).tLastName + ", " + entries.get(i).tFirstName);
             }
         }
     }
@@ -112,7 +123,7 @@ public class schoolsearch {
     }
 
     public static void printAllEntries(ArrayList<Entry> entries){
-        for(int i = 0; i <entries.size(); i++){
+        for(int i = 0; i < entries.size(); i++){
             System.out.println(entries.get(i).stFirstName + " " +entries.get(i).stLastName);
             System.out.println("\tGrade: " + entries.get(i).grade);
             System.out.println("\tClassroom: " + entries.get(i).classroom);
