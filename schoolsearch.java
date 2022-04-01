@@ -51,6 +51,8 @@ public class schoolsearch {
                     printStudentsByTeacher(entries, tokens[1]);
                 }else if(tokens[0].equals("B:") || tokens[0].equals("Bus:")){
                     printStudentsByBus(entries, Integer.parseInt(tokens[1]));
+                }else if(tokens[0].equals("A:") || tokens[0].equals("Average:")){
+                    printAverageGPA(entries, Integer.parseInt(tokens[1]));
                 }
             }
             if(tokens.length == 1){
@@ -69,6 +71,20 @@ public class schoolsearch {
             int numberOfStudents = studentsInGrade(entries, i);
             System.out.println("<" + i + ">:" + numberOfStudents);
         }
+    }
+
+    public static void printAverageGPA(ArrayList<Entry> entries, int targetGrade){
+        double total = 0.0;
+        int count = 0;
+        for(int i = 0; i < entries.size(); i++){
+            if(entries.get(i).grade == targetGrade){
+                total += entries.get(i).gpa;
+                count++;
+            }
+        }
+        System.out.print("For grade " + targetGrade + ", the average GPA is: ");
+        System.out.format("%.2f", total/count);
+        System.out.println();
     }
 
     public static void printStudentsByGrade(ArrayList<Entry> entries, int inputGrade){
