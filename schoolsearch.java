@@ -66,35 +66,40 @@ public class schoolsearch {
         }
     }
 
-    public static void info(ArrayList<Entry> entries){
-        for(int i = 0; i < 7; i++){
-            int numberOfStudents = studentsInGrade(entries, i);
-            System.out.println("<" + i + ">:" + numberOfStudents);
-        }
-    }
-
-    public static void printAverageGPA(ArrayList<Entry> entries, int targetGrade){
-        double total = 0.0;
-        int count = 0;
+    public static void student(ArrayList<Entry> entries, String lastName){
         for(int i = 0; i < entries.size(); i++){
-            if(entries.get(i).grade == targetGrade){
-                total += entries.get(i).gpa;
-                count++;
+            if(entries.get(i).stLastName.equals(lastName.toUpperCase())){
+                System.out.println("Student Name: " + entries.get(i).stLastName + ", " + entries.get(i).stFirstName 
+                + ", Grade: " + entries.get(i).grade + ", Classroom: " + entries.get(i).classroom 
+                + ", Teacher Name: " + entries.get(i).tLastName + ", " + entries.get(i).tFirstName);
             }
         }
-        System.out.print("For grade " + targetGrade + ", the average GPA is: ");
-        System.out.format("%.2f", total/count);
-        System.out.println();
     }
-
+    
+    public static void studentBus(ArrayList<Entry> entries, String lastName){
+        for(int i = 0; i < entries.size(); i++){
+            if(entries.get(i).stLastName.equals(lastName.toUpperCase())){
+                System.out.println("Student Name: " + entries.get(i).stLastName + ", " + entries.get(i).stFirstName + ", Bus: " + entries.get(i).bus);
+            }
+        }
+    }
+    
+    public static void printStudentsByTeacher(ArrayList<Entry> entries, String teacherLName){
+        for(int i = 0; i < entries.size(); i++){
+            if(entries.get(i).tLastName.equals(teacherLName.toUpperCase())){
+                System.out.println("Student Name: " + entries.get(i).stLastName + ", " + entries.get(i).stFirstName);
+            }
+        }
+    }
+    
     public static void printStudentsByGrade(ArrayList<Entry> entries, int inputGrade){
         for(int i = 0; i < entries.size(); i++){
             if(entries.get(i).grade == inputGrade){
-                System.out.println(entries.get(i).stLastName + ", " + entries.get(i).stFirstName);
+                System.out.println("Student Name: " + entries.get(i).stLastName + ", " + entries.get(i).stFirstName);
             }
         }
     }
-
+    
     public static void printStudentByGradeHiLo(ArrayList<Entry> entries, int inputGrade, boolean high){
         Entry temp = null;
         for(int i = 0; i < entries.size(); i++){
@@ -122,13 +127,34 @@ public class schoolsearch {
             + ", Teacher: " + temp.tLastName + ", " + temp.tFirstName + ", Bus route: " + temp.bus);
         }
     }
-
+    
     public static void printStudentsByBus(ArrayList<Entry> entries, int busNum){
         for(int i = 0; i < entries.size(); i++){
             if(entries.get(i).bus == busNum){
-                System.out.println(entries.get(i).stLastName + ", " + entries.get(i).stFirstName
+                System.out.println("Student Name: " + entries.get(i).stLastName + ", " + entries.get(i).stFirstName
                 + ", grade: " + entries.get(i).grade + ", classroom: " + entries.get(i).classroom);
             }
+        }
+    }
+    
+    public static void printAverageGPA(ArrayList<Entry> entries, int targetGrade){
+        double total = 0.0;
+        int count = 0;
+        for(int i = 0; i < entries.size(); i++){
+            if(entries.get(i).grade == targetGrade){
+                total += entries.get(i).gpa;
+                count++;
+            }
+        }
+        System.out.print("For grade " + targetGrade + ", the average GPA is: ");
+        System.out.format("%.2f", total/count);
+        System.out.println();
+    }
+
+    public static void info(ArrayList<Entry> entries){
+        for(int i = 0; i < 7; i++){
+            int numberOfStudents = studentsInGrade(entries, i);
+            System.out.println("<" + i + ">:" + numberOfStudents);
         }
     }
 
@@ -142,30 +168,7 @@ public class schoolsearch {
         return studentCounter;
     }
 
-    public static void printStudentsByTeacher(ArrayList<Entry> entries, String teacherLName){
-        for(int i = 0; i < entries.size(); i++){
-            if(entries.get(i).tLastName.equals(teacherLName.toUpperCase())){
-                System.out.println(entries.get(i).stLastName + ", " + entries.get(i).stFirstName);
-            }
-        }
-    }
-
-    public static void studentBus(ArrayList<Entry> entries, String lastName){
-        for(int i = 0; i < entries.size(); i++){
-            if(entries.get(i).stLastName.equals(lastName.toUpperCase())){
-                System.out.println(entries.get(i).stLastName + ", " + entries.get(i).stFirstName + ", " + entries.get(i).bus);
-            }
-        }
-    }
-
-    public static void student(ArrayList<Entry> entries, String lastName){
-        for(int i = 0; i < entries.size(); i++){
-            if(entries.get(i).stLastName.equals(lastName.toUpperCase())){
-                System.out.println(entries.get(i).stLastName + ", " + entries.get(i).stFirstName + ", "+entries.get(i).grade +
-                ", " + entries.get(i).classroom + ", " + entries.get(i).tLastName + ", " + entries.get(i).tFirstName);
-            }
-        }
-    }
+    
 
     public static void getStudentEntries(ArrayList<Entry> entries, File studentsFile) throws FileNotFoundException{
         Scanner students = new Scanner(studentsFile);
