@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#call the schoolsearch program with tests.txt as the input
+java schoolsearch <tests.txt >tests.out
