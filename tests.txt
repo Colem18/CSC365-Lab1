@@ -1,0 +1,175 @@
+//Test 1A: call short version of Student command without Bus flag (R3, R4)
+//Expected output: Student Name: CORKER, CARTER, Grade: 4, Classroom: 105, Teacher Name: HANTZ, JED
+S: CORKER
+
+//Test 1B: call long version of Student command without Bus flag (R3, R4)
+//Expected output: Student Name: BREVO,JANNETTE, Grade: 6, Classroom: 111, Teacher Name: NISTENDIRK, NANCY
+Student: BREVO
+
+//Test 1C: call short version of Student command with non-existent student and no Bus flag (R3, R4)
+//Expected output: <empty line>
+S: ROGERS
+
+//Test 2A: call short version of Student command with short Bus flag (R3, R5)
+//Expected output: Student Name: THEUNISSEN, GRACE, Bus: 54
+S: THEUNISSEN B
+
+//Test 2B: call long version of Student command with long Bus flag (R3, R5)
+//Expected output: Student Name: KOZOLA, BUSTER, Bus: 55
+Student: KOZOLA Bus
+
+//Test 2C: call long version of Student command with non-existenet student and short Bus flag (R3, R5)
+//Expected output: <no output>
+Student: SAMUEL B
+
+//Test 3A: call short version of Teacher command (R3, R6)
+//Expected output: Students in KERBS's class:
+//  RACANELLO, NOEL
+//  CORONADO, DIMPLE
+//  BOYTER, WAN
+//  KEMERER, ROSETTA
+//  DEMARTINI, DEWAYNE
+T: KERBS
+
+//Test 3B: call long version of Teacher command (R3, R6)
+//Expected output: Students in GAMBREL's class:
+//  SCHOENECKER, PHUONG
+//  CLECKLER, FLOY
+//  KRAKE, VALENTIN
+//  CREMEANS, RANDOLPH
+//  KREESE, CARRIE
+Teacher: GAMBREL
+
+//Test 3C: call short version of Teacher command with a non-existent teacher (R3, R6)
+//Expected output: Students in TEACHERNAME's class:
+T: TEACHERNAME
+
+//Test 4A: call short version of Grade command (R3, R7)
+//Expected output: Students in grade 2:
+//  WOOLERY, NOLAN
+//  VILARDO, EMMANUEL
+//  LIBRANDI, TODD
+//  HAVIR, BOBBIE
+//  SARAO, DIEDRA
+//  VANCOTT, MIKE
+//  WICINSKY, TERESE
+//  KOZOLA, BUSTER
+//  MULLINGS, LEIGHANN
+//  BUSSMANN, BILLY
+//  BERBES, DICK
+//  MULGREW, RANDELL
+//  TOWLEY, LANE
+G: 2
+
+//Test 4B: call long version of Grade command (R3, R7)
+//Expected output: Students in grade 3:
+//  COOKUS, XUAN
+//  ELHADDAD, SHANTE
+//  BRODERSEN, HYE  
+//  SWEDLUND, SHARRI
+//  CIGANEK, MANIE
+//  COVINGTON, TOMAS
+//  EARLY, TORY     
+//  LINHART, LELA
+//  THEUNISSEN, GRACE
+Grade: 3
+
+//Test 4C: call short version of Grade command with a grade that is higher than the bounds and a short version of Grade command with a grad that is lower than the bounds (R3, R7)
+//Expected output: <no output>
+G: 9
+Grade: -1
+
+//Test 5A: call short version of Grade command with short version of High flag (R3, R9)
+//Expected output: Student with highest GPA in grade 3: SWEDLUND, SHARRI, GPA: 3.24, Teacher: FAFARD, ROCIO, Bus route : 55
+G: 3 H
+
+//Test 5B: call long version of Grade command with long version of High flag (R3, R9)
+//Expected output: Student with highest GPA in grade 4: CORKER, CARTER, GPA: 3.12, Teacher: HANTZ, JED, Bus route: 53
+Grade: 4 High
+
+//Test 5C: call long version of Grade command with short version of Low flag (R3, R9)
+//Expected output: Student with lowest GPA in grade 1: SAELEE, DANILO, GPA: 2.85, Teacher: FALKER, ADOLPH, Bus route: 54
+Grade: 1 L
+
+//Test 5D: call short version of Grade command with long version of Low flag (R3, R9)
+//Expected output: Student with lowest GPA in grade 2: KOZOLA, BUSTER, GPA: 2.76, Teacher: HAMER, GAVIN, Bus route: 55
+G: 2 Low
+
+//Test 5D: call short version of Grade command with long version of High flag on grade with no students (R3, R9)
+//Expected output: There are no students in grade 5
+G: 5 High
+
+//Test 5E: call long version of Grade command with short version of Low flag on grade that does not exist (R3, R9)
+//Expected output: There are no students in grade -1
+Grade: -1 L
+
+//Test 6A: call short version of Bus command (R3, R8)
+//Expected output: Students on bus route 51:
+//  Student Name: WOOLERY, NOLAN, grade: 2, classroom: 104
+//	Student Name: STERBACK, PETER, grade: 6, classroom: 111
+//	Student Name: LIBRANDI, TODD, grade: 2, classroom: 108
+//	Student Name: RAPOSE, ALONZO, grade: 4, classroom: 105
+//	Student Name: COVINGTON, TOMAS, grade: 3, classroom: 107
+//	Student Name: MULLINGS, LEIGHANN, grade: 2, classroom: 108
+//	Student Name: DURAND, CARLEE, grade: 4, classroom: 101
+//	Student Name: FRIEDSTROM, REED, grade: 6, classroom: 106
+B: 51
+
+//Test 6B: call long version of Bus command (R3, R8)
+//Expected output: Students on bus route 55:
+//  Student Name: SWEDLUND, SHARRI, grade: 3, classroom: 107
+//	Student Name: ZAPPAVIGNA, ELLIOTT, grade: 6, classroom: 106
+//	Student Name: SAENPHIMMACHA, NUMBERS, grade: 6, classroom: 111
+//	Student Name: BOYTER, WAN, grade: 6, classroom: 102
+//	Student Name: KOZOLA, BUSTER, grade: 2, classroom: 108
+//	Student Name: DEMARTINI, DEWAYNE, grade: 6, classroom: 102
+//	Student Name: BEX, TAMESHA, grade: 4, classroom: 105
+//	Student Name: WERST, LEON, grade: 6, classroom: 111
+//	Student Name: LAMKIN, TAMA, grade: 6, classroom: 111
+Bus: 55
+
+//Test 6C: call short version of Bus command on a non-existent bus number (R3, R8)
+//Expected output: Students on bus route 1000
+B: 1000
+
+//Test 7A: call short version of Average command (R3, R10)
+//Expected output: For grade 2, the average GPA is: 2.95
+A: 2
+
+//Test 7B: call long version of Average command (R3, R10)
+//Expected output: For grade 3, the average GPA is: 3.05
+Average: 3
+
+//Test 7C: call short version of Average command with non-existent grade (R3, R10)
+//Expected output: For grade 10, the average GPA is: 0.00
+Average: 10
+
+//Test 8A: call short version of Info command (R3, R11)
+//Expected output: School information:
+//	In grade 0, there are: 0 students
+//	In grade 1, there are: 2 students
+//	In grade 2, there are: 13 students
+//	In grade 3, there are: 9 students
+//	In grade 4, there are: 15 students
+//	In grade 5, there are: 0 students
+//	In grade 6, there are: 21 students
+I
+
+//Test 8B;: call long version of Info command (R3, R11)
+//Expected output: School information:
+//	In grade 0, there are: 0 students
+//	In grade 1, there are: 2 students
+//	In grade 2, there are: 13 students
+//	In grade 3, there are: 9 students
+//	In grade 4, there are: 15 students
+//	In grade 5, there are: 0 students
+//	In grade 6, there are: 21 students
+Info
+
+//Test 9: call an unrecognized command (E1)
+//Expected output: <no output>
+Unrecognized: LASTNAME
+
+//Test 10: Quit the program (R3, R12)
+//Expected output: Program closes
+Q

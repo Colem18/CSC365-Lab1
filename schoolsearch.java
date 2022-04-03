@@ -85,25 +85,32 @@ public class schoolsearch {
     }
     
     public static void printStudentsByTeacher(ArrayList<Entry> entries, String teacherLName){
+        System.out.println("Students in " + teacherLName + "'s class:");
         for(int i = 0; i < entries.size(); i++){
             if(entries.get(i).tLastName.equals(teacherLName.toUpperCase())){
-                System.out.println("Student Name: " + entries.get(i).stLastName + ", " + entries.get(i).stFirstName);
+                System.out.println("\t" + entries.get(i).stLastName + ", " + entries.get(i).stFirstName);
             }
         }
     }
     
     public static void printStudentsByGrade(ArrayList<Entry> entries, int inputGrade){
-        for(int i = 0; i < entries.size(); i++){
-            if(entries.get(i).grade == inputGrade){
-                System.out.println("Student Name: " + entries.get(i).stLastName + ", " + entries.get(i).stFirstName);
+        if(inputGrade > -1 && inputGrade < 7){
+            System.out.println("Students in grade " + inputGrade + ":");
+            for(int i = 0; i < entries.size(); i++){
+                if(entries.get(i).grade == inputGrade){
+                    System.out.println("\t" + entries.get(i).stLastName + ", " + entries.get(i).stFirstName);
+                }
             }
         }
+        
     }
     
     public static void printStudentByGradeHiLo(ArrayList<Entry> entries, int inputGrade, boolean high){
         Entry temp = null;
+        int studentsInGrade = 0;
         for(int i = 0; i < entries.size(); i++){
             if(entries.get(i).grade == inputGrade){
+                studentsInGrade++;
                 if(temp == null){
                     temp = entries.get(i);
                 }else if(high == true){
@@ -117,21 +124,26 @@ public class schoolsearch {
                 }
             }
         }
-        if(high == true){
-            System.out.println("Student with target grade and highest GPA: "
-            + temp.stLastName + ", " + temp.stFirstName + ", GPA: " + temp.gpa
-            + ", Teacher: " + temp.tLastName + ", " + temp.tFirstName + ", Bus route: " + temp.bus);
+        if(studentsInGrade > 0){
+            if(high == true){
+                System.out.println("Student with highest GPA in grade " + inputGrade + ": "
+                + temp.stLastName + ", " + temp.stFirstName + ", GPA: " + temp.gpa
+                + ", Teacher: " + temp.tLastName + ", " + temp.tFirstName + ", Bus route: " + temp.bus);
+            }else{
+                System.out.println("Student with lowest GPA in grade " + inputGrade + ": "
+                + temp.stLastName + ", " + temp.stFirstName + ", GPA: " + temp.gpa
+                + ", Teacher: " + temp.tLastName + ", " + temp.tFirstName + ", Bus route: " + temp.bus);
+            }
         }else{
-            System.out.println("Student with target grade and lowest GPA: "
-            + temp.stLastName + ", " + temp.stFirstName + ", GPA: " + temp.gpa
-            + ", Teacher: " + temp.tLastName + ", " + temp.tFirstName + ", Bus route: " + temp.bus);
+            System.out.println("There are no students in grade " + inputGrade);
         }
     }
     
     public static void printStudentsByBus(ArrayList<Entry> entries, int busNum){
+        System.out.println("Students on bus route " + busNum + ":");
         for(int i = 0; i < entries.size(); i++){
             if(entries.get(i).bus == busNum){
-                System.out.println("Student Name: " + entries.get(i).stLastName + ", " + entries.get(i).stFirstName
+                System.out.println("\tStudent Name: " + entries.get(i).stLastName + ", " + entries.get(i).stFirstName
                 + ", grade: " + entries.get(i).grade + ", classroom: " + entries.get(i).classroom);
             }
         }
@@ -147,14 +159,19 @@ public class schoolsearch {
             }
         }
         System.out.print("For grade " + targetGrade + ", the average GPA is: ");
-        System.out.format("%.2f", total/count);
+        if(count > 0){
+            System.out.format("%.2f", total/count);
+        }else{
+            System.out.print("0.00");
+        }
         System.out.println();
     }
 
     public static void info(ArrayList<Entry> entries){
+        System.out.println("School information:");
         for(int i = 0; i < 7; i++){
             int numberOfStudents = studentsInGrade(entries, i);
-            System.out.println("<" + i + ">:" + numberOfStudents);
+            System.out.println("\tIn grade " + i + ", there are: " + numberOfStudents + " students");
         }
     }
 
