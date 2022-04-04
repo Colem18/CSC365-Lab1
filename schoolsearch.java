@@ -10,7 +10,6 @@ public class schoolsearch {
 
         ArrayList<Entry> entries = new ArrayList<Entry>();
         getStudentEntries(entries, studentsFile);
-        //printAllEntries(entries);
 
         getCommands(entries);
         
@@ -23,8 +22,6 @@ public class schoolsearch {
         while(quitFlag == 0){
             String userCommand = command.nextLine();
             String[] tokens = userCommand.split("\\s+");
-            //System.out.println(userCommand);
-            //System.out.println(tokens[0]);
             if(tokens[0].equals("S:") || tokens[0].equals("Student:")){
                 if(tokens.length == 3){
                     if(tokens[2].equals("B") || tokens[2].equals("Bus")){
@@ -64,6 +61,7 @@ public class schoolsearch {
                 }
             }
         }
+        command.close();
     }
 
     public static void student(ArrayList<Entry> entries, String lastName){
