@@ -1,5 +1,6 @@
 Compiling Instructions:
     Run command "javac *.java" in order to compile
+    Run command "chmod 777 runTests" to give script execution permission
     Run command "./runTests" which runs the schoolSearch program
         with input redirection with tests.txt and outputs it to a
         tests.out file. This script also finds the differences
