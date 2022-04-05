@@ -1,1 +1,7 @@
-Compiling and running instructions:
+Compiling Instructions:
+    Run command "javac *.java" in order to compile
+    Run command "./runTests" which runs the schoolSearch program
+        with input redirection with tests.txt and outputs it to a
+        tests.out file. This script also finds the differences
+        between tests.out and expected.out and will print any
+        differences it finds to the terminal. 
